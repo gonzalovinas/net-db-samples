@@ -8,6 +8,7 @@
 
 #define sleep(n)    Sleep(n)
 #endif
+const int READ_TIMEOUT = 5 * 1000;
 
 int main () {
     //  Prepare our context and socket
@@ -15,12 +16,14 @@ int main () {
     zmq::socket_t socket (context, ZMQ_REP);
     socket.bind ("tcp://*:5555");
 
+
+
     while (true) {
         zmq::message_t request;
 
         //  Wait for next request from client
 
-        socket.setsockopt(ZMQ_RCVTIMEO, 5 * 1000);
+        socket.setsockopt(ZMQ_RCVTIMEO, READ_TIMEOUT);
 
         if(0 < socket.recv (&request)) {
           std::cout << "Received Hello" << std::endl;
@@ -34,7 +37,7 @@ int main () {
           socket.send (reply);
 
         } else {
-          std::cout << "No pude leer nada en 5 segundos" << std::endl;
+          std::cout << "No pude leer nada en " << READ_TIMEOUT << " milisegundos" << std::endl;
         }
     }
     return 0;
