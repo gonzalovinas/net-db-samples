@@ -19,16 +19,23 @@ int main () {
         zmq::message_t request;
 
         //  Wait for next request from client
-        socket.recv (&request);
-        std::cout << "Received Hello" << std::endl;
 
-        //  Do some 'work'
-        sleep(1);
+        socket.setsockopt(ZMQ_RCVTIMEO, 5 * 1000);
 
-        //  Send reply back to client
-        zmq::message_t reply (5);
-        memcpy (reply.data (), "World", 5);
-        socket.send (reply);
+        if(0 < socket.recv (&request)) {
+          std::cout << "Received Hello" << std::endl;
+
+          //  Do some 'work'
+          sleep(1);
+
+          //  Send reply back to client
+          zmq::message_t reply (5);
+          memcpy (reply.data (), "World", 5);
+          socket.send (reply);
+
+        } else {
+          std::cout << "No pude leer nada en 5 segundos" << std::endl;
+        }
     }
     return 0;
 }
