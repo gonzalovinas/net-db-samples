@@ -26,7 +26,9 @@ int main () {
         socket.setsockopt(ZMQ_RCVTIMEO, READ_TIMEOUT);
 
         if(0 < socket.recv (&request)) {
-          std::cout << "Received Hello" << std::endl;
+
+
+          std::cout << (char *) request.data() << std::endl;
 
           //  Do some 'work'
           sleep(1);
