@@ -17,7 +17,7 @@ int main() {
 
 void thread_entry(int foo, int bar)
 {
-    int result = foo + bar;
+    auto result = foo + bar;
     // Do something with that, I guess
     while(true) {
         std::cout << result << std::endl;
