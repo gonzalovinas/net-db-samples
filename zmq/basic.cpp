@@ -14,7 +14,7 @@ int main () {
     //  Prepare our context and socket
     zmq::context_t context (1);
     zmq::socket_t socket (context, ZMQ_REP);
-    socket.bind ("tcp://*:5555");
+    socket.bind ("tcp://127.0.0.1:5555");
 
 
 
