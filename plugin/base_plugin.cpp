@@ -16,6 +16,8 @@ class BasePlugin  {
 
      public:
      
-        virtual std::string nombre() = 0; 
+        virtual std::string nombre()
+         {
+        }; 
  };
 

@@ -9,7 +9,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/plugin/basic",
+            "program": "${workspaceFolder}/plugin/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
