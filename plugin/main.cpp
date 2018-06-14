@@ -3,8 +3,7 @@
 
 int main() {
 
-    auto lib_handler = dlopen("plugin.so", RTLD_NOW);
-
+    auto lib_handler = dlopen("./unplugin.so", RTLD_LAZY);
     if(nullptr != lib_handler) {
         std::cout << "cargando modulo..." << std::endl;
 
